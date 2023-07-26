@@ -2,9 +2,22 @@
 import "./style.css";
 
 window.onload = () => {
-  document.querySelector(".card").classList.add(generateRandomSuit());
-  document.querySelector(".card").innerHTML = generateRandomNumber();
+  newCard();
+  document.querySelector(".button").addEventListener("click", newCard);
 };
+
+setInterval(newCard, 10000);
+
+function newCard() {
+  let elem = document.querySelector(".card");
+  elem.classList.forEach(clase => {
+    if (clase != "card") {
+      elem.classList.remove(clase);
+    }
+  });
+  elem.classList.add(generateRandomSuit());
+  elem.innerHTML = generateRandomNumber();
+}
 
 let generateRandomNumber = () => {
   let numbers = [
